@@ -178,7 +178,7 @@ MonoBehaviour:
   targetDensity: 55
   pressureMultiplier: 500
   nearPressureMultiplier: 18
-  viscosityStrength: 0.06
+  viscosityStrength: 0.0008
   boundsSize: {x: 16, y: 9}
   obstacleSize: {x: 0, y: 0}
   obstaclePosition: {x: 0, y: 0}
@@ -205,17 +205,17 @@ MonoBehaviour:
   colorMap:
     serializedVersion: 2
     key0: {r: 0, g: 0.24652743, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
+    key1: {r: 0, g: 0.80137205, b: 1, a: 1}
+    key2: {r: 1, g: 0.97662324, b: 0, a: 0}
+    key3: {r: 1, g: 0.2750727, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 43369
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
+    ctime0: 4587
+    ctime1: 32768
+    ctime2: 55705
+    ctime3: 65535
     ctime4: 0
     ctime5: 0
     ctime6: 0
@@ -230,7 +230,7 @@ MonoBehaviour:
     atime7: 0
     m_Mode: 0
     m_ColorSpace: -1
-    m_NumColorKeys: 2
+    m_NumColorKeys: 4
     m_NumAlphaKeys: 2
   gradientResolution: 64
   velocityDisplayMax: 7
