@@ -9,8 +9,6 @@ public static class ComputeHelper
     public const FilterMode defaultFilterMode = FilterMode.Bilinear;
     public const GraphicsFormat defaultGraphicsFormat = GraphicsFormat.R32G32B32A32_SFloat;
 
-
-
     static ComputeShader normalizeTextureCompute;
     static ComputeShader clearTextureCompute;
     static ComputeShader swizzleTextureCompute;

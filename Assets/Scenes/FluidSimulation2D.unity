@@ -172,18 +172,18 @@ MonoBehaviour:
   timeScale: 1
   fixedTimeStep: 0
   iterationsPerFrame: 3
-  gravity: -9.81
+  gravity: -10
   collisionDamping: 0.95
   smoothRadius: 0.35
   targetDensity: 55
   pressureMultiplier: 500
   nearPressureMultiplier: 18
   viscosityStrength: 0.0008
-  boundsSize: {x: 16, y: 9}
+  boundsSize: {x: 32, y: 18}
   obstacleSize: {x: 0, y: 0}
   obstaclePosition: {x: 0, y: 0}
-  interactionRadius: 2
-  interactionStrength: 90
+  interactionRadius: 3
+  interactionStrength: 120
   compute: {fileID: 7200000, guid: 79993b800f72548a0aa05b9cf311e0d1, type: 3}
   spawner: {fileID: 117156294}
   display: {fileID: 117156293}
@@ -206,8 +206,8 @@ MonoBehaviour:
     serializedVersion: 2
     key0: {r: 0, g: 0.24652743, b: 1, a: 1}
     key1: {r: 0, g: 0.80137205, b: 1, a: 1}
-    key2: {r: 1, g: 0.97662324, b: 0, a: 0}
-    key3: {r: 1, g: 0.2750727, b: 0, a: 0}
+    key2: {r: 0, g: 1, b: 0.99999976, a: 0}
+    key3: {r: 1, g: 1, b: 1, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
@@ -246,10 +246,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97629688751bc4013a45624c1ac93668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particleCount: 4032
+  particleCount: 20000
   initialVelocity: {x: 0, y: 0}
   spawnCenter: {x: 0, y: 0}
-  spawnSize: {x: 7, y: 7}
+  spawnSize: {x: 14, y: 14}
   jitterStrength: 0.025
   showSpawnBoundsGizmos: 1
 --- !u!1 &937551831
@@ -314,7 +314,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
