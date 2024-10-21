@@ -106,7 +106,7 @@ public class FluidSimulation3D : MonoBehaviour
             isPaused = true;
             pauseNextFrame = false;
         }
-        floorDisplay.transform.localScale = new Vector3(1, 1 / transform.localScale.y * 0.1f, 1);
+        floorDisplay.transform.localScale = new Vector3(1.03f, 1 / transform.localScale.y * 0.1f, 1.03f);
 
         HandleInput();
     }
