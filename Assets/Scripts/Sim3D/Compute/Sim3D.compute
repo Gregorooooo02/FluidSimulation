@@ -89,8 +89,9 @@ void ExternalForces (uint3 id : SV_DispatchThreadID)
 {
 	if (id.x >= numParticles) return;
 
-	// External forces (gravity)
-	Velocities[id.x] += float3(0, gravity, 0) * deltaTime;
+	// External forces (gravity and input interaction)
+	// Velocities[id.x] += ExternalForces(Positions[id.x], Velocities[id.x]) * deltaTime;
+	Velocities[id.x].y += gravity * deltaTime;
 
 	// Predict
 	PredictedPositions[id.x] = Positions[id.x] + Velocities[id.x] * 1 / 120.0;

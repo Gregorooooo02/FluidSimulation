@@ -17,6 +17,10 @@ public class FluidSimulation3D : MonoBehaviour
     public float nearPressureMultiplier;
     public float viscosityStrength;
 
+    [Header("Interaction Settings")]
+    [SerializeField] private float interactionRadius;
+    [SerializeField] private float interactionStrength;
+
     [Header("References")]
     public ComputeShader compute;
     public ParticleSpawner3D spawner;
@@ -28,8 +32,8 @@ public class FluidSimulation3D : MonoBehaviour
     public ComputeBuffer velocityBuffer { get; private set; }
     public ComputeBuffer densityBuffer { get; private set; }
     public ComputeBuffer predictedPositionsBuffer;
-    ComputeBuffer spatialIndices;
-    ComputeBuffer spatialOffsets;
+    public ComputeBuffer spatialIndices;
+    public ComputeBuffer spatialOffsets;
 
     // Kernel IDs
     const int externalForcesKernel = 0;
@@ -77,7 +81,6 @@ public class FluidSimulation3D : MonoBehaviour
 
         gpuSort = new();
         gpuSort.SetBuffers(spatialIndices, spatialOffsets);
-
 
         // Init display
         display.Init(this);
@@ -157,9 +160,23 @@ public class FluidSimulation3D : MonoBehaviour
 
         compute.SetMatrix("localToWorld", transform.localToWorldMatrix);
         compute.SetMatrix("worldToLocal", transform.worldToLocalMatrix);
+
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        bool isPullInteraction = Input.GetMouseButton(0);
+        bool isPushInteraction = Input.GetMouseButton(1);
+        float currInteractStrength = 0;
+
+        if (isPullInteraction || isPushInteraction)
+        {
+            currInteractStrength = isPushInteraction ? -interactionStrength : interactionStrength;
+        }
+
+        compute.SetVector("interactionInputPoint", mousePos);
+        compute.SetFloat("interactionInputStrength", currInteractStrength);
+        compute.SetFloat("interactionInputRadius", interactionRadius);
     }
 
-    void SetInitialBufferData(ParticleSpawner3D.SpawnData spawnData)
+    public void SetInitialBufferData(ParticleSpawner3D.SpawnData spawnData)
     {
         float3[] allPoints = new float3[spawnData.points.Length];
         System.Array.Copy(spawnData.points, allPoints, spawnData.points.Length);
@@ -189,7 +206,7 @@ public class FluidSimulation3D : MonoBehaviour
         }
     }
 
-    void OnDestroy()
+    public void OnDestroy()
     {
         ComputeHelper.Release(positionBuffer, predictedPositionsBuffer, velocityBuffer, densityBuffer, spatialIndices, spatialOffsets);
     }
@@ -203,5 +220,17 @@ public class FluidSimulation3D : MonoBehaviour
         Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
         Gizmos.matrix = m;
 
+        if (Application.isPlaying)
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            bool isPullInteraction = Input.GetMouseButton(0);
+            bool isPushInteraction = Input.GetMouseButton(1);
+
+            if (isPullInteraction || isPushInteraction)
+            {
+                Gizmos.color = isPullInteraction ? Color.red : Color.blue;
+                Gizmos.DrawWireSphere(mousePos, interactionRadius);
+            }
+        }
     }
 }

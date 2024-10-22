@@ -30,6 +30,7 @@ const float pressureMultiplier;
 const float nearPressureMultiplier;
 const float viscosityStrength;
 const float2 boundsSize;
+
 const float2 interactionInputPoint;
 const float interactionInputStrength;
 const float interactionInputRadius;
