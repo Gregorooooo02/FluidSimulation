@@ -39,7 +39,8 @@ public class ParametersController : MonoBehaviour
     public void SetDensity(float value) {
         sim.targetDensity = value;
 
-        string densityString = value.ToString();
+        float falseValue = value * 1.42f;
+        string densityString = falseValue.ToString();
         if (densityString.Length > 5) {
             densityString = densityString.Substring(0, 5);
         }
